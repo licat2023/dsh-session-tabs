@@ -1,0 +1,44 @@
+{
+  "name": "dsh-session-tabs",
+  "version": "1.0.0",
+  "description": "Browser-style session tab bar for DeepSeek Harness (DSH): one tab per opened session at the very top of the center column, beside the sidebar — click to switch, close per-tab, and start new sessions. 浏览器式会话标签页导航栏（位于侧边栏旁边，不挤占侧边栏）。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "tabs",
+    "session-tabs"
+  ],
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-slots"
+      ]
+    }
+  },
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    }
+  }
+}
