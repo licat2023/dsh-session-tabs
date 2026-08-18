@@ -101,13 +101,13 @@ dsh plugin --profile web remove dsh-session-tabs
 
 | 项 | 值 |
 | --- | --- |
-| 支持的 DSH 版本 | mainline `0.1.0-rc.7`（Git `99f6f02fec`，2026-08-17） |
-| 最后验证日期 | 2026-08-18 |
+| 支持的 DSH 版本 | 首个 npm 发布 `0.0.1-rc.1`（`@deepseek-ai/dsh-base` / `dsh-web-app`，2026-08-10）→ mainline `0.1.0-rc.7`（Git `99f6f02fec`，2026-08-17） |
+| 最后验证日期 | 2026-08-18（mainline 全量功能实测） |
 | 验证覆盖 | 加载/卸载、标签切换、关激活/非激活/全部标签、中键关闭与后台打开、侧键前后退、归档标签清理、亮暗主题 |
 | 接口依赖 | `shell.overlay` 槽位标准 prop（`useSessions`/`useWorkspaces`）、`sessions.open`/`sessions.clear`、`workspaces.startSession` |
 | 配置项 | 无（纯客户端，无 Config） |
 
-DSH mainline 快速演进，接口漂移可能导致旧结论失效；若在新版本上遇到问题，请提 issue 并附 DSH 版本与 commit。
+兼容性依据：插件只使用自首个发布以来保持稳定的公开接口（槽位标准 prop 与 sessions/workspaces 公开方法），最早发布版按接口兼容声明；mainline 为逐版实测。DSH mainline 快速演进，接口漂移可能导致旧结论失效；若在新版本上遇到问题，请提 issue 并附 DSH 版本与 commit。
 
 ## 权限与数据
 

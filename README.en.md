@@ -103,13 +103,13 @@ Refresh the page afterwards — the tab bar disappears (the plugin never writes 
 
 | Item | Value |
 | --- | --- |
-| Supported DSH version | mainline `0.1.0-rc.7` (Git `99f6f02fec`, 2026-08-17) |
-| Last verified | 2026-08-18 |
+| Supported DSH versions | First npm release `0.0.1-rc.1` (`@deepseek-ai/dsh-base` / `dsh-web-app`, 2026-08-10) → mainline `0.1.0-rc.7` (Git `99f6f02fec`, 2026-08-17) |
+| Last verified | 2026-08-18 (full feature pass on mainline) |
 | Verification coverage | load/unload, tab switching, closing active/inactive/all tabs, middle-click close and background open, side-button back/forward, archived-tab cleanup, light/dark themes |
 | Interface dependencies | `shell.overlay` slot standard props (`useSessions`/`useWorkspaces`), `sessions.open`/`sessions.clear`, `workspaces.startSession` |
 | Configuration | none (pure client, no Config) |
 
-DSH mainline evolves quickly and old results can go stale. If you hit an issue on a newer version, file an issue with your DSH version and commit.
+Compatibility rationale: the plugin only uses public interfaces that have been stable since the first release (slot standard props and public sessions/workspaces methods); the earliest release is covered by interface compatibility, mainline by per-version testing. DSH mainline evolves quickly and old results can go stale. If you hit an issue on a newer version, file an issue with your DSH version and commit.
 
 ## Permissions & data
 
