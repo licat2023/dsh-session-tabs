@@ -69,10 +69,10 @@ The tab bar sits **beside the sidebar** (a `position: fixed` top bar starting at
 ## Installation (deployment-level, auto-loads after refresh)
 
 ```sh
-dsh plugin --profile web add D:\Project\2025-2026-02\dsh-session-tabs
+dsh plugin --profile web add ./dsh-session-tabs
 ```
 
-(The path above is an example — point it at your checkout.)
+(The path is relative to the directory you run the command from — point it at your checkout.)
 
 Or manually: add the dependency to the profile's `package.json` and insert the row into `cordis.patch.yml`:
 

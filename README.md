@@ -69,7 +69,7 @@ flowchart TD
 ## 安装（部署级，刷新后自动加载）
 
 ```sh
-dsh plugin --profile web add D:\Project\2025-2026-02\dsh-session-tabs
+dsh plugin --profile web add ./dsh-session-tabs
 ```
 
 或手动：在 profile 的 `package.json` 加入依赖、在 `cordis.patch.yml` 插入：
