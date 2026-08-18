@@ -2,6 +2,14 @@
 
 浏览器式会话标签页导航栏 for DeepSeek Harness (DSH)：每打开一个会话就多一个顶部标签——像浏览器那样点击切换、关闭、新建。当前会话高亮，运行状态一目了然。
 
+## 界面预览
+
+<img src="assets/overview.png" width="720" alt="标签栏总览：顶部标签条位于侧边栏右缘，支持多会话并行">
+
+<img src="assets/tab-bar.png" width="720" alt="标签条特写：激活下划线、运行状态点、以及合并进同一行的会话头部（模式 / Session log）">
+
+<img src="assets/nav-history.svg" width="720" alt="会话历史导航语义">
+
 ## 与既有布局的关系
 
 标签栏位于**侧边栏旁边**（从侧边栏右缘开始，`position: fixed` 顶部条），**不会挤占侧边栏位置**：

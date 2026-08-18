@@ -28,6 +28,7 @@
   },
   "files": [
     "lib",
+    "assets",
     "README.md",
     "LICENSE"
   ],

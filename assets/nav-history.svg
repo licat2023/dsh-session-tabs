@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="320" viewBox="0 0 880 320" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+  <rect width="880" height="320" fill="#ffffff"/>
+  <!-- Home box (navIndex = -1, outside the stack) -->
+  <rect x="40" y="84" width="96" height="56" rx="8" fill="#f9fafb" stroke="#9aa1ab" stroke-dasharray="5 4"/>
+  <text x="88" y="118" text-anchor="middle" font-size="14" fill="#61666b">首页</text>
+  <text x="88" y="70" text-anchor="middle" font-size="12" fill="#81858c">-1</text>
+
+  <!-- History stack boxes -->
+  <rect x="188" y="84" width="96" height="56" rx="8" fill="#ffffff" stroke="#d0d5dd"/>
+  <text x="236" y="118" text-anchor="middle" font-size="14" fill="#0f1115">A</text>
+  <text x="236" y="70" text-anchor="middle" font-size="12" fill="#81858c">0</text>
+
+  <rect x="312" y="84" width="96" height="56" rx="8" fill="#ffffff" stroke="#d0d5dd"/>
+  <text x="360" y="118" text-anchor="middle" font-size="14" fill="#0f1115">B</text>
+  <text x="360" y="70" text-anchor="middle" font-size="12" fill="#81858c">1</text>
+
+  <rect x="436" y="84" width="96" height="56" rx="8" fill="#ffffff" stroke="#d0d5dd"/>
+  <text x="484" y="118" text-anchor="middle" font-size="14" fill="#0f1115">C</text>
+  <text x="484" y="70" text-anchor="middle" font-size="12" fill="#81858c">2</text>
+
+  <!-- Current entry: the neighbor B appended by closing active C -->
+  <rect x="560" y="84" width="96" height="56" rx="8" fill="#eef2ff" stroke="#3964fe" stroke-width="2"/>
+  <text x="608" y="118" text-anchor="middle" font-size="14" fill="#0f1115" font-weight="700">B*</text>
+  <text x="608" y="70" text-anchor="middle" font-size="12" fill="#81858c">3</text>
+  <text x="608" y="162" text-anchor="middle" font-size="12" fill="#3964fe">当前（右邻 B）</text>
+
+  <!-- Back / forward between home and first entry -->
+  <path d="M140 112 L182 112" stroke="#9aa1ab" stroke-dasharray="4 3" fill="none"/>
+  <path d="M182 116 L182 108 M182 116 L174 116" stroke="#9aa1ab" stroke-width="1.4" fill="none"/>
+  <path d="M186 112 L144 112" stroke="#9aa1ab" stroke-dasharray="4 3" fill="none"/>
+  <path d="M144 108 L144 116 M144 108 L152 108" stroke="#9aa1ab" stroke-width="1.4" fill="none"/>
+  <text x="161" y="174" text-anchor="middle" font-size="11" fill="#81858c">后退越过第一条 → 首页；前进恢复第一条</text>
+
+  <!-- Close-active note between C and B* -->
+  <text x="528" y="162" text-anchor="middle" font-size="11" fill="#81858c">关闭激活 C → 邻居 B 追加进历史</text>
+
+  <!-- Back/forward rail under the stack -->
+  <path d="M188 200 H656" stroke="#d0d5dd" fill="none"/>
+  <path d="M656 196 L664 200 L656 204" fill="#d0d5dd"/>
+  <path d="M188 196 L180 200 L188 204" fill="#d0d5dd"/>
+  <text x="422" y="194" text-anchor="middle" font-size="12" fill="#61666b">后退 / 前进：逐条移动（落点已关闭时重新打开该标签）</text>
+
+  <!-- Rules -->
+  <text x="40" y="240" font-size="12" fill="#61666b">· 标签历史 = 激活日志：每次切换（点标签 / 关闭激活标签 / 新建会话）都截断前进链并追加当前会话。</text>
+  <text x="40" y="260" font-size="12" fill="#61666b">· 关闭未激活标签：当前不动，不记录历史。</text>
+  <text x="40" y="280" font-size="12" fill="#61666b">· 关闭全部标签 → 终结性首页：后退恢复最近一条历史，前进无响应；首页不在栈内，前进永远不会回到首页。</text>
+</svg>
