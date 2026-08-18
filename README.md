@@ -82,11 +82,47 @@ dsh plugin --profile web add D:\Project\2025-2026-02\dsh-session-tabs
 
 然后 `pnpm install` 并重启 DSH（或触发 profile patch 热重载后刷新页面）。之后每次页面加载标签栏自动出现，无需批准、无需手动激活。
 
+## 快速开始
+
+1. 刷新页面（或重启 DSH）后，顶部即出现标签栏，当前会话自动成为一个标签；
+2. 打开更多会话：点侧边栏会话行（前台打开）或对其**鼠标中键**（后台打开为标签，不切换）；点标签栏 `＋` 新建会话；
+3. 切换：点击任一标签；关闭：点击标签上 `×` 或对标签**鼠标中键**；
+4. 历史导航：鼠标**侧键**后退/前进（浏览器式，见[会话历史导航](#会话历史导航)）。
+
 ## 卸载
 
 ```sh
 dsh plugin --profile web remove dsh-session-tabs
 ```
+
+移除后刷新页面，标签栏即消失（插件不做任何持久化写入，无需额外清理）。
+
+## 兼容性
+
+| 项 | 值 |
+| --- | --- |
+| 支持的 DSH 版本 | mainline `0.1.0-rc.7`（Git `99f6f02fec`，2026-08-17） |
+| 最后验证日期 | 2026-08-18 |
+| 验证覆盖 | 加载/卸载、标签切换、关激活/非激活/全部标签、中键关闭与后台打开、侧键前后退、归档标签清理、亮暗主题 |
+| 接口依赖 | `shell.overlay` 槽位标准 prop（`useSessions`/`useWorkspaces`）、`sessions.open`/`sessions.clear`、`workspaces.startSession` |
+| 配置项 | 无（纯客户端，无 Config） |
+
+DSH mainline 快速演进，接口漂移可能导致旧结论失效；若在新版本上遇到问题，请提 issue 并附 DSH 版本与 commit。
+
+## 权限与数据
+
+- **纯客户端实现**：不注入任何 Host 端代码，无 Host 依赖，无持久化写入；
+- **读取**：会话列表与选中态（`useSessions`）、归档清单（`useWorkspaces`）、`sessions.open`/`sessions.clear`/`workspaces.startSession` 调用——全部为 DSH 公开接口，数据仅用于渲染标签与导航；
+- **无网络、无凭据、无文件访问**；标签顺序与导航历史仅存活于当前页面内存，刷新即重置。
+
+## 故障排查
+
+| 现象 | 处理 |
+| --- | --- |
+| 标签栏没出现 | 确认 profile 依赖已装（`pnpm install`）且 `cordis.patch.yml` 有插入行；触发 patch 热重载后**硬刷新**页面 |
+| 标签文字是旧标题 | 归档/改名后需刷新页面（标签 MRU 以会话列表为准，刷新即重新对齐） |
+| 标签栏位置不对 | 检查是否与其它注入了 `shell.overlay` 的插件冲突（同一槽位多 occupant 时顺序由 `order` 决定） |
+| 侧键触发浏览器历史跳转 | 确认加载的是最新 bundle（部署级插件随页面加载，硬刷新一次） |
 
 ## 开发说明
 

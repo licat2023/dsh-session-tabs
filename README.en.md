@@ -84,11 +84,47 @@ Or manually: add the dependency to the profile's `package.json` and insert the r
 
 Then run `pnpm install` and restart DSH (or trigger the profile patch hot-reload and refresh the page). After that the tab bar appears automatically on every page load — no approval, no manual activation.
 
+## Quick start
+
+1. Refresh the page (or restart DSH): the tab bar appears at the top and the current session becomes a tab;
+2. Open more sessions: click a sidebar session row (open in foreground) or **middle-click** it (open as a background tab without switching); click `＋` on the bar for a new session;
+3. Switch by clicking a tab; close via its `×` or a **middle-click** on the tab;
+4. History navigation: mouse **side buttons** for back/forward (browser-style, see [Tab history navigation](#tab-history-navigation)).
+
 ## Uninstall
 
 ```sh
 dsh plugin --profile web remove dsh-session-tabs
 ```
+
+Refresh the page afterwards — the tab bar disappears (the plugin never writes anything persistent, so no extra cleanup is needed).
+
+## Compatibility
+
+| Item | Value |
+| --- | --- |
+| Supported DSH version | mainline `0.1.0-rc.7` (Git `99f6f02fec`, 2026-08-17) |
+| Last verified | 2026-08-18 |
+| Verification coverage | load/unload, tab switching, closing active/inactive/all tabs, middle-click close and background open, side-button back/forward, archived-tab cleanup, light/dark themes |
+| Interface dependencies | `shell.overlay` slot standard props (`useSessions`/`useWorkspaces`), `sessions.open`/`sessions.clear`, `workspaces.startSession` |
+| Configuration | none (pure client, no Config) |
+
+DSH mainline evolves quickly and old results can go stale. If you hit an issue on a newer version, file an issue with your DSH version and commit.
+
+## Permissions & data
+
+- **Pure client-side**: no Host code is injected, no Host dependency, no persistent writes;
+- **Reads**: session list and selection (`useSessions`), archived set (`useWorkspaces`), plus calls to `sessions.open`/`sessions.clear`/`workspaces.startSession` — all public DSH interfaces; the data is used only to render tabs and navigate;
+- **No network, no credentials, no file access**; the tab order and nav history live only in the current page's memory and reset on refresh.
+
+## Troubleshooting
+
+| Symptom | Fix |
+| --- | --- |
+| Tab bar does not appear | Check the profile dependency is installed (`pnpm install`) and `cordis.patch.yml` has the insert row; after the patch hot-reload, **hard-refresh** the page |
+| Tab titles look stale | Archived/renamed sessions re-align on refresh (the tab MRU follows the session list) |
+| Tab bar is misplaced | Check for other plugins injecting into `shell.overlay` (multiple occupants are ordered by `order`) |
+| Side buttons trigger browser history navigation | Confirm the latest bundle is loaded (deployment plugins load with the page — hard-refresh once) |
 
 ## Development notes
 
