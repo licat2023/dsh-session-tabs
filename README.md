@@ -8,7 +8,38 @@
 
 <img src="assets/tab-bar.png" width="720" alt="标签条特写：激活下划线、运行状态点、以及合并进同一行的会话头部（模式 / Session log）">
 
-<img src="assets/nav-history.svg" width="720" alt="会话历史导航语义">
+## 会话历史导航
+
+标签历史是一份**激活日志**：每次切换（点标签、关闭激活标签、新建会话）都截断前进链并把当前会话追加到栈尾；关闭标签只移除标签条上的条目，**不**从历史中删除——回退落在已关闭的标签上时会把它重新打开。
+
+```mermaid
+flowchart LR
+    HOME(("首页<br/>navIndex = −1"))
+    A["会话 A"]
+    B["会话 B"]
+    C["会话 C"]
+    CUR["会话 B*<br/>（当前）"]
+    A --- B --- C
+    A -. "后退越过第一条 → 首页" .-> HOME
+    HOME -. "前进恢复第一条（不会回到首页）" .-> A
+    C -. "关闭激活 C → 右邻 B 追加（普通切换）" .-> CUR
+    classDef current fill:#eef2ff,stroke:#3964fe,stroke-width:2px;
+    class CUR current
+```
+
+不同操作的结果：
+
+```mermaid
+flowchart TD
+    OP{"对标签的操作"} -->|"关闭激活标签"| S1["切到右邻标签并记入历史<br/>（与普通切换一致）"]
+    OP -->|"关闭未激活标签"| S2["当前会话不动<br/>不记录历史"]
+    OP -->|"关闭全部标签"| S3["进入终结性首页<br/>后退恢复最近一条历史 · 前进无响应"]
+    OP -->|"打开会话 / 新建"| S4["截断前进链 · 追加到栈尾"]
+    S1 --> TIP["首页（navIndex = −1）始终在栈外：<br/>从首页回退到某个标签后按前进，<br/>只会回到历史条目，永远不会回到首页"]
+    S3 --> TIP
+    classDef tip fill:#fff7e6,stroke:#f7ad31,stroke-width:1px;
+    class TIP tip
+```
 
 ## 与既有布局的关系
 
