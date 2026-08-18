@@ -1,5 +1,7 @@
 # dsh-session-tabs（DSH 会话标签页）
 
+[English](README.en.md) ｜ 中文
+
 浏览器式会话标签页导航栏 for DeepSeek Harness (DSH)：每打开一个会话就多一个顶部标签——像浏览器那样点击切换、关闭、新建。当前会话高亮，运行状态一目了然。
 
 ## 界面预览

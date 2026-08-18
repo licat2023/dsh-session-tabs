@@ -30,6 +30,7 @@
     "lib",
     "assets",
     "README.md",
+    "README.en.md",
     "LICENSE"
   ],
   "license": "MIT",
