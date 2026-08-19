@@ -103,14 +103,13 @@ Refresh the page afterwards — the tab bar disappears (the plugin never writes 
 
 | Item | Value |
 | --- | --- |
-| Supported DSH versions | First npm release `0.0.1-rc.1` (`@deepseek-ai/dsh-base`, 2026-08-10) → mainline `0.1.0-rc.7` (Git `99f6f02fec`, 2026-08-17) |
+| Supported DSH versions | Tested on `0.1.0-rc.6` (npm release) and `0.1.0-rc.7` (mainline source); theoretically compatible with every version from `0.1.0-rc.6` onward |
 | Last verified | 2026-08-18 |
-| Versions actually tested | npm `0.1.0-rc.6` via the official `npx @deepseek-ai/dsh web` command (load/tabs/switch/close/side-button navigation all pass); mainline `0.1.0-rc.7` full feature pass |
 | Verification coverage | load/unload, tab switching, closing active/inactive/all tabs, middle-click close and background open, side-button back/forward, archived-tab cleanup, light/dark themes |
 | Interface dependencies | `shell.overlay` slot standard props (`useSessions`/`useWorkspaces`), `sessions.open`/`sessions.clear`, `workspaces.startSession` |
 | Configuration | none (pure client, no Config) |
 
-Compatibility rationale: the plugin only uses public interfaces that have been stable since the first release (slot standard props and public sessions/workspaces methods). Note that the `0.0.1-rc.1` npm package itself has a missing dependency (`@deepseek-ai/dsh-agent-tool-mode` was never published) and cannot be installed, so that version is covered by interface compatibility; the first installable npm version, `0.1.0-rc.6`, is real-machine tested. DSH mainline evolves quickly and old results can go stale. If you hit an issue on a newer version, file an issue with your DSH version and commit.
+Compatibility rationale: the plugin only uses public interfaces that have been stable since `0.1.0-rc.6` (slot standard props and public sessions/workspaces methods) and has been verified on two different distribution sources — the npm release (official `npx @deepseek-ai/dsh web` command, real-machine) and the mainline source (full feature pass). DSH mainline evolves quickly and old results can go stale. If you hit an issue on a newer version, file an issue with your DSH version and commit.
 
 ## Permissions & data
 
